@@ -45,4 +45,7 @@ function renderWeather(data) {
   console.log(descriptionWeather);
   weatherIcon = data.data.weather[0].icon;
   console.log(weatherIcon);
+
+  const renderInfos = document.querySelector("#demo");
+  renderInfos.innerHTML += `${city} ${tempmax} ${tempmin} ${descriptionWeather} ${weatherIcon}`
 }
