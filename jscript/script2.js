@@ -49,9 +49,10 @@ function renderWeather(data) {
   const renderInfos = document.querySelector("#demo");
   renderInfos.innerHTML = `<div class="clima">
   Cidade: <h3>${city}</h3>
-  Temp. Max <h3>${tempmax}</h3>
-  Temp. Min <h3>${tempmin}</h3>
+  Temp. Max <h3>${tempmax}º</h3>
+  Temp. Min <h3>${tempmin}º</h3>
   Descrição: <h3>${descriptionWeather}</h3>
   
   </clima>`;
+  document.querySelector(".botoes").classList.add("ocultar");
 }
