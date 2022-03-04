@@ -34,18 +34,24 @@ function searchByPosition() {
 }
 
 function renderWeather(data) {
-  console.log(data);
+  // console.log(data);
   city = data.data.name;
-  console.log(city);
+  // console.log(city);
   tempmax = ((data.data.main.temp_max)-273.15).toFixed(2);
-  console.log(tempmax);
+  // console.log(tempmax);
   tempmin = ((data.data.main.temp_min)-273.15).toFixed(2);
-  console.log(tempmin);
+  // console.log(tempmin);
   descriptionWeather = data.data.weather[0].description;
-  console.log(descriptionWeather);
+  // console.log(descriptionWeather);
   weatherIcon = data.data.weather[0].icon;
-  console.log(weatherIcon);
+  // console.log(weatherIcon);
 
   const renderInfos = document.querySelector("#demo");
-  renderInfos.innerHTML += `${city} ${tempmax} ${tempmin} ${descriptionWeather} ${weatherIcon}`
+  renderInfos.innerHTML = `<div class="clima">
+  Cidade: <h3>${city}</h3>
+  Temp. Max <h3>${tempmax}</h3>
+  Temp. Min <h3>${tempmin}</h3>
+  Descrição: <h3>${descriptionWeather}</h3>
+  
+  </clima>`;
 }
