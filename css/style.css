@@ -12,7 +12,7 @@ h1{
     font-weight: bold;
 }
 h2{
-    color:white;
+    color:#0080CD;
     font-size:3em;
     font-weight: bold;
     text-align: center;
@@ -23,7 +23,7 @@ h2{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: orange;
+    /* background-color: orange; */
 }
 .botoes{
    
@@ -43,6 +43,9 @@ button{
     border: 0;
     margin:5px;
     color:white;
-    font-size: 1em;
-    
+    font-size: 20px;    
+}
+
+.ocultar{
+    /* display:none; */
 }
