@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
 
 </head>
+
 <body>
+
     <header>
         <h1>Clima Hoje</h1>
     </header>
     <main>
         <section class="tela1">
-           <h2> Descubra como vai ser o dia de hoje?</h2>
-        <div class="botoes">
-            <button onclick="localizaoAutomatica()">Saiba Agora</button>
-            <button onclick="localizaoDirecionado()">Saiba Agora</button>
-        </div>
+            <h2> Descubra como vai ser o dia de hoje?</h2>
+            <p id="demo"></p>
+            <div class="botoes">
+                <button onclick="localizaoAutomatica()">Saiba Agora</button>
+                <button onclick="localizaoDirecionado()">Saiba Agora</button>
+            </div>
         </section>
         <aside></aside>
     </main>
     <footer></footer>
-<script src="jscript/script.js"></script>
-<script src="jscript/script2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="jscript/script.js"></script>
+    <script src="jscript/script2.js"></script>
+
 </body>
+
 </html>
