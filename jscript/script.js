@@ -1,5 +1,5 @@
 const API_key = `4e82254cee731f87bb90ca60059ca134`
-const URL_FIRST_API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`
+let locations = []
 
 /* 
   recebe input com o as infos
@@ -46,15 +46,15 @@ function getExactLocation(location) {
 }
 
 function get5Locations(response) {
-  const options = [...response.data]
+  locations = [...response.data]
 
   const optionsUl = document.createElement("ul.optionsDiv")
 
-  options.forEach((option) => {
+  locations.forEach((option) => {
     const liOp = document.createElement("li")
 
     liOp.innerHTML = `
-      <p onclick="">${option.name}</p>
+      <p onclick="getLocation(${option.name})">${option.name}</p>
     `
 
     optionsUl.appendChild(liOp)
@@ -63,4 +63,10 @@ function get5Locations(response) {
   const input = document.querySelector("#location-input")
 
   input.insertAdjacentElement('afterend', optionsUl)
+}
+
+function getLocation(locationName) {
+  const selectedLocation = locations.filter((location) => location.name === locationName)
+
+  console.log(selectedLocation)
 }
