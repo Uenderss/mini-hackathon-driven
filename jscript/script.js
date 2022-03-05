@@ -17,15 +17,13 @@ function localizaoDirecionado() {
   inputLocation.classList.add("ask-location");
   const inputLocationHTML = `
     <label for="location-input">Insira sua localização</label>
-    <input id="location-input" type="text" />
+    <input id="location-input" type="text" placeholder="Cidade, Estado, País" />
     <button onclick="getInput()">Buscar</button>
   `
   inputLocation.innerHTML = inputLocationHTML
 
   const insertionPoint = document.querySelector(".tela1>h2")
   insertionPoint.insertAdjacentElement('afterend', inputLocation)
-
-  inputLocation.addEventListener('change', getInput)
 }
 
 function getInput() {
@@ -46,31 +44,60 @@ function getExactLocation(location) {
     console.error(er)
   })
 }
-let barto={};
-function get5Locations(response) {
-  locations = [...response.data]
-  barto=locations;
-  const optionsUl = document.createElement("ul");
-  optionsUl.classList.add("options-div");
 
-  locations.forEach((option) => {
-    const liOp = document.createElement("li")
-
-    liOp.innerHTML = `
-      <p onclick="getLocation('${option.name}')">${option.name}   ${option.state}</p>
-    `
-
-    optionsUl.appendChild(liOp)
-  })
-
+function createLocationsListElement() {
   const input = document.querySelector("#location-input")
+
+  const optionsUl = document.createElement("ul")
+  optionsUl.classList.add("options-div")
 
   input.insertAdjacentElement('afterend', optionsUl)
 }
 
-function getLocation(locationName) {
-  
-  const selectedLocation = locations.filter((location) => location.name === locationName);
+function get5Locations(response) {
+  locations = [...response.data]
 
-  console.log(selectedLocation)
+  createLocationsListElement()
+
+  const optionsUl = document.querySelector(".options-div")
+  let currentOptions = ''
+
+  console.log("locations before: ", locations)
+
+  locations.forEach((option) => {
+    lat = option.lat
+    lon = option.lon
+
+    currentOptions += `
+      <li>
+        <p onclick="getLocation('${lat}', '${lon}')">Cidade: ${option.name}, UF: ${option.state}</p>
+      </li>
+    `
+  })
+
+  optionsUl.innerHTML = currentOptions
+}
+
+function getLocation(lat, lon) {
+
+  console.log("lat = ", lat * 1)
+  console.log("lon = ", lon)
+
+  const selectedLocation = locations.filter((location) => location.lat === lat * 1 && location.lon === lon * 1)
+
+  selectedLocation ? showPointedPosition() : alert("Deu ruim!!!")
+}
+
+function showPointedPosition() {
+  hideSearchElements()
+
+  URL_SECOND_API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`
+  searchByPosition();
+}
+
+function hideSearchElements() {
+  const tela1 = document.querySelector(".tela1")
+  const searchContainer = document.querySelector(".ask-location")
+
+  tela1.removeChild(searchContainer)
 }
