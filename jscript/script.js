@@ -1,17 +1,6 @@
 const API_key = `4e82254cee731f87bb90ca60059ca134`;
 let locations = [];
 
-/* 
-  recebe input com o as infos
-  faz um get na api 1
-  guarda as 5 primeiras respostas
-  mostra o nome das 5 primeiras opções para o usuário escolher
-
-  de acordo com a opção escolhida, pegar lat e lon
-  fazer request na segunda api e pegar os dados necessários
-  retornar os dados para montar na tela
-*/
-
 function localizaoDirecionado() {
   const inputLocation = document.createElement("div");
   inputLocation.classList.add("ask-location");
