@@ -1,5 +1,5 @@
-const API_key = `4e82254cee731f87bb90ca60059ca134`
-let locations = []
+const API_key = `4e82254cee731f87bb90ca60059ca134`;
+let locations = [];
 
 /* 
   recebe input com o as infos
@@ -13,7 +13,8 @@ let locations = []
 */
 
 function localizaoDirecionado() {
-  const inputLocation = document.createElement("div.askLocation")
+  const inputLocation = document.createElement("div");
+  inputLocation.classList.add("ask-location");
   const inputLocationHTML = `
     <label for="location-input">Insira sua localização</label>
     <input id="location-input" type="text" />
@@ -28,6 +29,7 @@ function localizaoDirecionado() {
 }
 
 function getInput() {
+  console.log("chamou get Input");
   const locationInput = document.querySelector('#location-input').value
 
   getExactLocation(locationInput)
@@ -44,17 +46,18 @@ function getExactLocation(location) {
     console.error(er)
   })
 }
-
+let barto={};
 function get5Locations(response) {
   locations = [...response.data]
-
-  const optionsUl = document.createElement("ul.optionsDiv")
+  barto=locations;
+  const optionsUl = document.createElement("ul");
+  optionsUl.classList.add("options-div");
 
   locations.forEach((option) => {
     const liOp = document.createElement("li")
 
     liOp.innerHTML = `
-      <p onclick="getLocation(${option.name})">${option.name}</p>
+      <p onclick="getLocation('${option.name}')">${option.name}   ${option.state}</p>
     `
 
     optionsUl.appendChild(liOp)
@@ -66,7 +69,8 @@ function get5Locations(response) {
 }
 
 function getLocation(locationName) {
-  const selectedLocation = locations.filter((location) => location.name === locationName)
+  
+  const selectedLocation = locations.filter((location) => location.name === locationName);
 
   console.log(selectedLocation)
 }
