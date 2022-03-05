@@ -27,7 +27,6 @@ function localizaoDirecionado() {
 }
 
 function getInput() {
-  console.log("chamou get Input");
   const locationInput = document.querySelector('#location-input').value
 
   getExactLocation(locationInput)
@@ -62,8 +61,6 @@ function get5Locations(response) {
   const optionsUl = document.querySelector(".options-div")
   let currentOptions = ''
 
-  console.log("locations before: ", locations)
-
   locations.forEach((option) => {
     lat = option.lat
     lon = option.lon
@@ -79,10 +76,6 @@ function get5Locations(response) {
 }
 
 function getLocation(lat, lon) {
-
-  console.log("lat = ", lat * 1)
-  console.log("lon = ", lon)
-
   const selectedLocation = locations.filter((location) => location.lat === lat * 1 && location.lon === lon * 1)
 
   selectedLocation ? showPointedPosition() : alert("Deu ruim!!!")
