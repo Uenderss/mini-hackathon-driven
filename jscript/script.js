@@ -45,35 +45,51 @@ function createLocationsListElement() {
 function get5Locations(response) {
   locations = [...response.data]
 
-  createLocationsListElement()
+  if(!(document.querySelector(".options-div"))) {createLocationsListElement()}
 
   const optionsUl = document.querySelector(".options-div")
+
   let currentOptions = ''
 
   locations.forEach((option) => {
-    lat = option.lat
-    lon = option.lon
+    optionLat = option.lat.toFixed(2) * 1
+    optionLon = option.lon.toFixed(2) * 1
 
     currentOptions += `
-      <li>
-        <p onclick="getLocation('${lat}', '${lon}')">Cidade: ${option.name}, UF: ${option.state}</p>
-      </li>
+    <li>
+    <p onclick="getLocation(${optionLat}, ${optionLon})">Cidade: ${option.name}, UF: ${option.state}</p>
+    </li>
     `
   })
 
   optionsUl.innerHTML = currentOptions
 }
 
-function getLocation(lat, lon) {
-  const selectedLocation = locations.filter((location) => location.lat === lat * 1 && location.lon === lon * 1)
+function getLocation(optionLat, optionLon) {
+  const selectedLocation = locations.filter((location) => {
 
-  selectedLocation ? showPointedPosition() : alert("Deu ruim!!!")
+    const locationLat = location.lat.toFixed(2) * 1
+    const locationLon = location.lon.toFixed(2) * 1
+
+    const fisrtCondition = locationLat === optionLat
+    const secondCondition = locationLon === optionLon
+
+    return (fisrtCondition && secondCondition)
+  })
+
+  if(selectedLocation !== []) {
+    lat = optionLat
+    lon = optionLon
+
+    showPointedPosition()
+  }
 }
 
 function showPointedPosition() {
   hideSearchElements()
 
   URL_SECOND_API = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_key}`
+
   searchByPosition();
 }
 
